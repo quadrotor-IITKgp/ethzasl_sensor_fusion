@@ -222,6 +222,7 @@ void SSF_Core::imuCallback(const sensor_msgs::ImuConstPtr & msg)
 
   msgPose_.header.stamp = msg->header.stamp;
   msgPose_.header.seq = msg->header.seq;
+  msgPose_.header.frame_id = "ssf";
 
   StateBuffer_[(unsigned char)(idx_state_ - 1)].toPoseMsg(msgPose_);
   pubPose_.publish(msgPose_);
@@ -306,6 +307,7 @@ void SSF_Core::stateCallback(const sensor_fusion_comm::ExtEkfConstPtr & msg)
 
   msgPose_.header.stamp = msg->header.stamp;
   msgPose_.header.seq = msg->header.seq;
+  msgPose_.header.frame_id = "ssf";
 
   StateBuffer_[(unsigned char)(idx_state_ - 1)].toPoseMsg(msgPose_);
   pubPose_.publish(msgPose_);
